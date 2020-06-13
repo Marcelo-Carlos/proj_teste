@@ -1,0 +1,10 @@
+cd C:/Users/matheus.martins/Documents/ELIT
+
+git pull https://github.com/MartMatheus/ELIT
+
+
+git add .
+
+git commit -m "Sprint 3"
+
+git push
