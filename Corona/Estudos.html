@@ -45,12 +45,25 @@
         </nav>
     </header>
 
-    <table class="columns">
-        <tr>
-          <td><div id="chart_div" style="border: 1px solid #ccc"></div></td>
-          <td><div id="secondchart_div" style="border: 1px solid #ccc"></div></td>
-        </tr>
-      </table>
+    <div class="row">
+        <div class="col-md-4 col-12">
+            <div id="chart_div" style=" border: 1px solid #ccc"></div>
+        </div>
+        <div class="col-md-4 col-12">
+            <div id="secondchart_div" style="border: 1px solid #ccc"></div>
+        </div>
+        <div class="col-md-4 col-12 p-4">
+            <p style="text-align:justify; margin-right: 40px; font-weight: bold;">
+                Como podemos ver através desses gráficos, atualizados em tempo real, o novo coronavírus
+                (SARS-Cov-2), causador da
+                doença COVID-19, conseguiu uma ampla distribuição de casos pelo mundo, e aqui no Brasil também,
+                infelizmente tomando muitas vítimas. Então é importante seguir as práticas de isolamento social
+                recomendadas pela Organização Mundial de Saúde (OMS), para que possâmos diminuir o contágio e
+                refletir
+                em forma de dados através desses gráficos.
+            </p>
+        </div>
+    </div>
 
     <div ng-app="rodapeElit" style="position: bottom;">
         <footer-elit></footer-elit>
@@ -81,42 +94,43 @@
             get().then(data => {
                 var resultado = data.results[0];
                 var data = new google.visualization.DataTable();
-            data.addColumn('string', 'Topping');
-            data.addColumn('number', 'Slices');
-            data.addRows([
-                ['Mortos', resultado.total_deaths],
-                ['Contaminados', resultado.total_cases],
-                ['Curados', resultado.total_recovered],
-            ]);
-            var options = {
-                'title': 'Covid pelo mundo',
-                'width': 400,
-                'height': 300,
-                colors: ['#ff0000', '#ff7000','#00ff0A']
-            };
-            var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
-            chart.draw(data, options);
+                data.addColumn('string', 'Topping');
+                data.addColumn('number', 'Slices');
+                data.addRows([
+                    ['Mortos', resultado.total_deaths],
+                    ['Contaminados', resultado.total_cases],
+                    ['Curados', resultado.total_recovered],
+                ]);
+                var options = {
+                    'title': 'Covid pelo mundo',
+                    'width': 400,
+                    'height': 300,
+                    colors: ['#ff0000', '#ff7000', '#74DF00']
+                };
+                var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+                chart.draw(data, options);
             })
         }
 
         function drawsecondChart() {
-            get().then(data => {
-                var resultado = data.results[0];
+            getBrasil().then(data => {
+                var resultado = data.data;
                 var data = new google.visualization.DataTable();
-            data.addColumn('string', 'Topping');
-            data.addColumn('number', 'Slices');
-            data.addRows([
-                ['Mortos', resultado.total_deaths],
-                ['Contaminados', resultado.total_cases],
-                ['Curados', resultado.total_recovered],
-            ]);
-            var options = {
-                'title': 'Covid pelo Brasil',
-                'width': 400,
-                'height': 300
-            };
-            var chart = new google.visualization.PieChart(document.getElementById('secondchart_div'));
-            chart.draw(data, options);
+                data.addColumn('string', 'Topping');
+                data.addColumn('number', 'Slices');
+                data.addRows([
+                    ['Mortos', resultado.deaths],
+                    ['Contaminados', resultado.cases],
+                    ['Curados', resultado.recovered],
+                ]);
+                var options = {
+                    'title': 'Covid pelo Brasil',
+                    'width': 400,
+                    'height': 300,
+                    colors: ['#ff0000', '#ff7000', '#74DF00']
+                };
+                var chart = new google.visualization.PieChart(document.getElementById('secondchart_div'));
+                chart.draw(data, options);
             })
         }
     </script>
