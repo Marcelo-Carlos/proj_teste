@@ -1,17 +1,11 @@
 const API_URL = "https://api-bndes.azurewebsites.net/api/FaleConosco" ;
+const API_URL_CORONA = "https://api.thevirustracker.com/free-api?global=stats" ;
 
-function get(URL){
-    var data;
-axios.get(URL)
-            .then(function (response) {
-                data = response.data;
-                console.log(data);
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-        return data;
-        }
+function get() {
+    return axios.get(API_URL_CORONA).then(response => {
+      return response.data
+    })
+}
 
 function post(data){
     axios.post(API_URL,data)

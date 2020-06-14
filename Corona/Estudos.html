@@ -45,8 +45,12 @@
         </nav>
     </header>
 
-
-    <h1>Pagina Onde Iremos trazer Graficos do Back-end para demostrar a situaçao atual do mundo</h1>
+    <table class="columns">
+        <tr>
+          <td><div id="chart_div" style="border: 1px solid #ccc"></div></td>
+          <td><div id="secondchart_div" style="border: 1px solid #ccc"></div></td>
+        </tr>
+      </table>
 
     <div ng-app="rodapeElit" style="position: bottom;">
         <footer-elit></footer-elit>
@@ -61,6 +65,62 @@
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
 
     <script type="text/javascript" src="js/mdb.js"></script>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <script type="text/javascript" src="js/axios.js"></script>
+
+    <script type="text/javascript" src="js/apis.js"></script>
+
+    <script type="text/javascript">
+        google.charts.load('current', { 'packages': ['corechart'] });
+        google.charts.setOnLoadCallback(drawChart);
+        google.charts.setOnLoadCallback(drawsecondChart);
+
+        function drawChart() {
+            get().then(data => {
+                var resultado = data.results[0];
+                var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Topping');
+            data.addColumn('number', 'Slices');
+            data.addRows([
+                ['Mortos', resultado.total_deaths],
+                ['Contaminados', resultado.total_cases],
+                ['Curados', resultado.total_recovered],
+            ]);
+            var options = {
+                'title': 'Covid pelo mundo',
+                'width': 400,
+                'height': 300,
+                colors: ['#ff0000', '#ff7000','#00ff0A']
+            };
+            var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+            chart.draw(data, options);
+            })
+        }
+
+        function drawsecondChart() {
+            get().then(data => {
+                var resultado = data.results[0];
+                var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Topping');
+            data.addColumn('number', 'Slices');
+            data.addRows([
+                ['Mortos', resultado.total_deaths],
+                ['Contaminados', resultado.total_cases],
+                ['Curados', resultado.total_recovered],
+            ]);
+            var options = {
+                'title': 'Covid pelo Brasil',
+                'width': 400,
+                'height': 300
+            };
+            var chart = new google.visualization.PieChart(document.getElementById('secondchart_div'));
+            chart.draw(data, options);
+            })
+        }
+    </script>
+
 </body>
 
 </html>
