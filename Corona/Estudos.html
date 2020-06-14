@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Conter Covid19</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular.min.js"></script>
+    <script src="js/components/app.js"></script>
+    <script src="js/components/footerController.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/mdb.min.css" rel="stylesheet">
+    <link href="css/corona.css" rel="stylesheet">
+    <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+</head>
+
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-info">
+            <div class="container">
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <a class="navbar-brand logo" href="index.html"><img src="IMAGENS/hand.png" alt="Logo Elit"></a>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item hoverable">
+                            <a class="nav-link" href="index.html">Home</a>
+                        </li>
+                        <li class="nav-item hoverable">
+                            <a class="nav-link" href="FiqueCasa.html">Fique em Casa</a>
+                        </li>
+                        <li class="nav-item hoverable">
+                            <a class="nav-link" href="formulario.html">Fale conosco</a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </nav>
+    </header>
+
+    <div class="row">
+        <div class="col-md-4 col-12">
+            <div id="chart_div" style=" border: 1px solid #ccc"></div>
+        </div>
+        <div class="col-md-4 col-12">
+            <div id="secondchart_div" style="border: 1px solid #ccc"></div>
+        </div>
+        <div class="col-md-4 col-12 p-4">
+            <p style="text-align:justify; margin-right: 40px; font-weight: bold;">
+                Como podemos ver através desses gráficos, atualizados em tempo real, o novo coronavírus
+                (SARS-Cov-2), causador da
+                doença COVID-19, conseguiu uma ampla distribuição de casos pelo mundo, e aqui no Brasil também,
+                infelizmente tomando muitas vítimas. Então é importante seguir as práticas de isolamento social
+                recomendadas pela Organização Mundial de Saúde (OMS), para que possâmos diminuir o contágio e
+                refletir
+                em forma de dados através desses gráficos.
+            </p>
+        </div>
+    </div>
+
+    <div ng-app="rodapeElit" style="position: bottom;">
+        <footer-elit></footer-elit>
+    </div>
+
+    <script type="text/javascript" src="js/elit.js"></script>
+
+    <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+
+    <script type="text/javascript" src="js/popper.min.js"></script>
+
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="js/mdb.js"></script>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <script type="text/javascript" src="js/axios.js"></script>
+
+    <script type="text/javascript" src="js/apis.js"></script>
+
+    <script type="text/javascript">
+        google.charts.load('current', { 'packages': ['corechart'] });
+        google.charts.setOnLoadCallback(drawChart);
+        google.charts.setOnLoadCallback(drawsecondChart);
+
+        function drawChart() {
+            get().then(data => {
+                var resultado = data.results[0];
+                var data = new google.visualization.DataTable();
+                data.addColumn('string', 'Topping');
+                data.addColumn('number', 'Slices');
+                data.addRows([
+                    ['Mortos', resultado.total_deaths],
+                    ['Contaminados', resultado.total_cases],
+                    ['Curados', resultado.total_recovered],
+                ]);
+                var options = {
+                    'title': 'Covid pelo mundo',
+                    'width': 400,
+                    'height': 300,
+                    colors: ['#ff0000', '#ff7000', '#74DF00']
+                };
+                var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+                chart.draw(data, options);
+            })
+        }
+
+        function drawsecondChart() {
+            getBrasil().then(data => {
+                var resultado = data.data;
+                var data = new google.visualization.DataTable();
+                data.addColumn('string', 'Topping');
+                data.addColumn('number', 'Slices');
+                data.addRows([
+                    ['Mortos', resultado.deaths],
+                    ['Contaminados', resultado.cases],
+                    ['Curados', resultado.recovered],
+                ]);
+                var options = {
+                    'title': 'Covid pelo Brasil',
+                    'width': 400,
+                    'height': 300,
+                    colors: ['#ff0000', '#ff7000', '#74DF00']
+                };
+                var chart = new google.visualization.PieChart(document.getElementById('secondchart_div'));
+                chart.draw(data, options);
+            })
+        }
+    </script>
+
+</body>
+
+</html>
