@@ -18,7 +18,7 @@ function post(data){
     axios.post(API_URL,data)
     .then(function (response) {
         console.log("criado com sucesso");
-        alert("Nome:"+data.name+"email:"+data.email);
+        alert(" Nome: "+data.name+"\n E-mail: "+data.email);
     })
     .catch(function (error) {
         console.log(error);
