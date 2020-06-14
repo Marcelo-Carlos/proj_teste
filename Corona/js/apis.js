@@ -1,3 +1,5 @@
+const API_URL = "https://api-bndes.azurewebsites.net/api/FaleConosco" ;
+
 function get(URL){
     var data;
 axios.get(URL)
@@ -11,4 +13,13 @@ axios.get(URL)
         return data;
         }
 
-get('https://api.thevirustracker.com/free-api?global=stats')
+function post(data){
+    axios.post(API_URL,data)
+    .then(function (response) {
+        console.log("criado com sucesso");
+    })
+    .catch(function (error) {
+        console.log(error);
+    });
+}
+
