@@ -58,7 +58,7 @@
                 <label for="exampleInputEmail1">Endereço de email</label>
                 <input type="email" class="form-control" id="email" aria-describedby="emailHelp"
                     placeholder="Vosso E-Mail por favor">
-               <!-- <small id="emailHelp" class="form-text text-muted">Nunca vamos compartilhar seu email, com
+                <!-- <small id="emailHelp" class="form-text text-muted">Nunca vamos compartilhar seu email, com
                     ninguém.</small> -->
             </div>
             <button type="button" id="enviar" class="btn btn-primary">Enviar</button>
@@ -90,12 +90,25 @@
     <script type="text/javascript" src="js/mdb.js"></script>
 
     <script type="text/javascript" src="js/apis.js"></script>
-    
-    <script type="text/javascritpt">
-        var buttonElement = document.querySelector('#enviar');
-buttonElement.onclick = function (){
-  alert("Clicou no botão");
-}
+
+    <script>
+        $('#enviar').on('click', function () {
+            var name = $('#name').val();
+            var email = $('#email').val();
+            if(!name){
+                alert("nome invalido")
+            }
+            if(!email){
+                alert("E-Mail invalido")
+            }
+            if(name && email){
+                post({
+                    name, 
+                    email
+                })
+            }
+        });
+        
     </script>
 
 </body>
