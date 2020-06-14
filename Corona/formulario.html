@@ -47,47 +47,37 @@
 
     <main id="Como_Funciona">
 
-        <h1 id="funcionamento"><strong>Por que o Isolamento é tão importante?</strong></h1>
+        <h1 id="funcionamento py-1" style="text-align: left;  margin-left: 70px;"><strong>Fale Conosco</strong></h1>
 
-        <p class="func">O Ministério da Saúde recomenda que todos estejam a no mínimo dois metros de distância uns dos
-            outros,
-            pois o vírus não se espalha pelo ar, mas sim pelo contato, e por gotículas de saliva, expelidas pela fala,
-            tosse ou espirros.
-            Mas a questão levantada por muitos é por que tudo está parando? Se o grupo de risco são os idosos e pessoas
-            com doenças imunodeficientes,
-            hipertensivos, diabéticos, transplantados, por que fechar escolas, comércio, e não somente isolar esses
-            grupos?
-
-            O que significa “achatar a curva“?
-            Lembra do R0? Com a redução do R0 causada pelo isolamento social, o número de casos simultâneos cai, e, com
-            isso, o número simultâneo de pacientes que necessitam de atenção hospitalar, ou, em alguns casos, até mesmo
-            suporte em Unidades de Terapia Intensiva (UTI) e ventilação mecânica.
-
-            Evitando a sobrecarga, isto é, havendo disponibilidade de leitos e equipamentos proporcionais ao número de
-            casos.
-
-            Acredita-se que a mortalidade da COVID-19 seja em torno de 1%. Este número pode se tornar menor a medida que
-            testamos maior parte da população, e também com a criação de testes sorológicos.
-
-            Na Itália, onde os esforços de isolamento social e achatamento da curva foram tardios e pouco eficientes,
-            levando a uma deterioração do sistema de saúde, a mortalidade está entre 8 e 12%.
+        <form class="ml-5">
+            <div class="form-group  col-lg-5">
+                <label for="exampleInputtext">nome</label>
+                <input type="text" class="form-control" id="exampleInputtext" placeholder="Nome">
+            </div>
+            <div class="form-group  col-lg-5">
+                <label for="exampleInputEmail1">Endereço de email</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                    placeholder="Seu email">
+                <small id="emailHelp" class="form-text text-muted">Nunca vamos compartilhar seu email, com
+                    ninguém.</small>
+            </div>
+            <button type="submit" class="btn btn-primary">Enviar</button>
+        </form>
 
 
-            Onde o vírus se mantém vivo? E por quanto tempo vive em cada objeto?
-            Já há alguns estudos publicados quanto a isso, até mesmo em jornais médicos de renome, como o New England
-            Journal of Medicine, que mostram uma persistência do vírus em torno de 12 horas na maioria dos materiais
-            (como, por exemplo, plástico, vidro e outros), porém estes estudos foram feitos em condições de laboratório,
-            com temperatura e umidade fixas.
 
-            Não há estudos ainda de como o vírus se comporte em materiais expostos à elementos ou mesmo a luz solar, mas
-            por segurança devemos considerar como, no mínimo, 12 horas de persistência do vírus.
-        </p>
+
+
+
+
 
     </main>
 
     <div ng-app="rodapeElit" style="position: bottom;">
         <footer-elit></footer-elit>
     </div>
+
+    <script type="text/javascript" src="js/axios.js"></script>
 
     <script type="text/javascript" src="js/elit.js"></script>
 
@@ -98,6 +88,9 @@
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
 
     <script type="text/javascript" src="js/mdb.js"></script>
+
+    <script type="text/javascript" src="js/apis.js"></script>
+
 </body>
 
 </html>
